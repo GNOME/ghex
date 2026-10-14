@@ -741,7 +741,7 @@ hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
  */
 void
 hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
-					  size_t rep_len, char *data, gboolean undoable)
+					  size_t rep_len, const char *data, gboolean undoable)
 {
 	g_autoptr(HexChangeData) change_data = NULL;
 
@@ -779,7 +779,7 @@ hex_document_set_data_multi_start (HexDocument *doc)
 }
 
 gboolean
-hex_document_set_data_multi_add (HexDocument *doc, GListModel *change_list, gint64 offset, size_t len, size_t rep_len, char *data)
+hex_document_set_data_multi_add (HexDocument *doc, GListModel *change_list, gint64 offset, size_t len, size_t rep_len, const char *data)
 {
 	GListStore *store = (GListStore *) change_list;
 	g_autoptr(HexChangeData) change_data = NULL;

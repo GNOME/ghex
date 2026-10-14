@@ -73,10 +73,10 @@ gboolean hex_change_data_get_external_file_change (HexChangeData *data);
 HexDocument	*hex_document_new (void);
 HexDocument	*hex_document_new_from_file (GFile *file);
 void		hex_document_set_data (HexDocument *doc, gint64 offset, size_t len,
-		size_t rep_len, char *data, gboolean undoable);
+		size_t rep_len, const char *data, gboolean undoable);
 
 GListModel * hex_document_set_data_multi_start (HexDocument *doc);
-gboolean hex_document_set_data_multi_add (HexDocument *doc, GListModel *change_list, gint64 offset, size_t len, size_t rep_len, char *data);
+gboolean hex_document_set_data_multi_add (HexDocument *doc, GListModel *change_list, gint64 offset, size_t len, size_t rep_len, const char *data);
 void hex_document_set_data_multi_end (HexDocument *doc, GListModel *change_list, gboolean undoable);
 
 void		hex_document_set_byte (HexDocument *doc, char val, gint64 offset,
