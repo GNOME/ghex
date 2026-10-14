@@ -280,7 +280,7 @@ common_about_cb (GtkWindow *parent)
 	                       "application-name", strstr (APP_ID, "Devel") ? "GHex (Development)" : "GHex",
 	                       "developer-name", "Logan Rathbone",
 	                       "version", version,
-	                       "issue-url", "https://gitlab.gnome.org/GNOME/ghex/-/issues",
+	                       "issue-url", "https://gitlab.gnome.org/GNOME/ghex/-/work_items",
 	                       "developers", authors,
 	                       "documenters", documentation_credits,
 	                       "translator-credits", _("translator-credits"),
