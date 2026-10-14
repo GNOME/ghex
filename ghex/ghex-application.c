@@ -183,7 +183,7 @@ ghex_application_about_action (GSimpleAction *action, GVariant *parameter, gpoin
 	                       "application-name", strstr (APP_ID, "Devel") ? "GHex (Development)" : "GHex",
 	                       "developer-name", "Logan Rathbone",
 	                       "version", version,
-	                       "issue-url", "https://gitlab.gnome.org/GNOME/ghex/-/issues",
+	                       "issue-url", "https://gitlab.gnome.org/GNOME/ghex/-/work_items",
 	                       "developers", authors,
 	                       "documenters", documentation_credits,
 	                       "translator-credits", _("translator-credits"),
