@@ -231,3 +231,12 @@ util_hex_cpl_from_ascii_cpl (int ascii_cpl, HexGroupType group_type)
 {
 	return ascii_cpl * 2 + ascii_cpl / group_type;
 }
+
+/* Sanity check to make sure font string is valid */
+gboolean
+util_validate_font_str (const char *font)
+{
+	g_autofree char *try_font_tag = g_strdup_printf ("<span font=\"%s\"></span>", font);
+
+	return pango_parse_markup (try_font_tag, -1, 0, NULL, NULL, NULL, NULL);
+}

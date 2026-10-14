@@ -3,9 +3,11 @@
 #define G_LOG_DOMAIN "hex-view"
 
 #include "hex-view.h"
+
 #include "hex-private-common.h"
 #include "hex-mark-private.h"
 #include "hex-highlight-private.h"
+#include "util.h"
 
 enum
 {
@@ -343,16 +345,21 @@ hex_view_get_font (HexView *self)
 void
 hex_view_set_font (HexView *self, const char *font)
 {
-	HexViewPrivate *priv = hex_view_get_instance_private (self);
-	gboolean parse_ret;
-	g_autofree char *try_font_tag = NULL;
+	HexViewPrivate *priv;
 
-	g_return_if_fail (self && font);
+	g_return_if_fail (HEX_IS_VIEW (self));
+	g_return_if_fail (font != NULL);
 
-	/* Sanity check to make sure font is valid */
-	try_font_tag = g_strdup_printf ("<span font=\"%s\"></span>", font);
-	parse_ret = pango_parse_markup (try_font_tag, -1, 0, NULL, NULL, NULL, NULL);
-	g_return_if_fail (parse_ret);
+	priv = hex_view_get_instance_private (self);
+
+	if (g_strcmp0 (font, priv->font) == 0)
+		return;
+
+	if (! util_validate_font_str (font))
+	{
+		g_warning ("%s: Invalid font string: %s", __func__, font);
+		return;
+	}
 
 	g_free (priv->font);
 	priv->font = g_strdup (font);
@@ -360,6 +367,8 @@ hex_view_set_font (HexView *self, const char *font)
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_FONT]);
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CHAR_WIDTH]);
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_CHAR_HEIGHT]);
+
+	gtk_widget_queue_resize (GTK_WIDGET(self));
 }
 
 void
