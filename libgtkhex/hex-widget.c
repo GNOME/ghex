@@ -349,8 +349,6 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 
 		gtk_widget_measure (widget, GTK_ORIENTATION_HORIZONTAL, -1, &min, &nat, NULL, NULL);
 
-		g_debug ("%s: offsets: min: %d - nat: %d", __func__, min, nat);
-
 		/* offsets always goes at x coordinate 0 so just leave it as it's
 		 * zeroed out anyway. */
 
