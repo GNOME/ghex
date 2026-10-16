@@ -205,7 +205,8 @@ backspace_action (HexTextEditable *self)
 	HexTextEditablePrivate *priv = hex_text_editable_get_instance_private (self);
 	HexSelection *selection = hex_view_get_selection (HEX_VIEW(self));
 	HexHighlight *highlight = hex_selection_get_highlight (selection);
-	gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
+	const gint64 cursor_pos = hex_selection_get_cursor_pos (selection);
+	const gsize n_selected = hex_highlight_get_n_selected (highlight);
 
 	/* If we have only one character selected, what we want to do
 	 * is delete the prior character. Otherwise, this should
@@ -213,16 +214,13 @@ backspace_action (HexTextEditable *self)
 	 * highlighted selection.
 	 */
 
-	if (hex_highlight_get_n_selected (highlight) == 1)
-	{
-		if (cursor_pos <= 0)
-			return;
-
-		--cursor_pos;
-		hex_selection_collapse (selection, cursor_pos);
-	}
+	if (n_selected == 1 && cursor_pos <= 0)
+		return;
 
 	delete_action (self);
+
+	if (n_selected == 1)
+		hex_selection_collapse (selection, cursor_pos - 1);
 }
 
 static void
