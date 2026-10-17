@@ -142,8 +142,6 @@ _hex_view_clamp_cursor_pos (HexView *self, gint64 cursor_pos)
 	if (cursor_pos < 0)
 	{
 		cursor_pos = 0;
-
-		g_debug ("%s: cursor_pos cannot be below 0. Clamping to 0", __func__);
 	}
 	/* This logic certainly doesn't need to be this complicated, but for now we
 	 * want to be somewhat verbose if the cursor_pos is programmatically set
@@ -156,8 +154,6 @@ _hex_view_clamp_cursor_pos (HexView *self, gint64 cursor_pos)
 		else
 		{
 			cursor_pos = CLAMP (insert_mode ? payload_size : payload_size - 1, 0, INT64_MAX);
-
-			g_debug ("%s: cursor_pos out of bounds. Clamping to: %ld", __func__, cursor_pos);
 		}
 	}
 
@@ -198,10 +194,10 @@ hex_view_set_document (HexView *self, HexDocument *document)
 	g_return_if_fail (HEX_IS_VIEW (self));
 	g_return_if_fail (document == NULL || HEX_IS_DOCUMENT (document));
 
-	if (!document)
-		g_debug ("%s: NULL passed as document parameter", __func__);
-
 	priv = hex_view_get_instance_private (self);
+
+	if (document != NULL && document == priv->document)
+		return;
 
 	g_clear_object (&priv->document);
 	priv->document = document ? g_object_ref (document) : hex_document_new ();
@@ -212,7 +208,9 @@ hex_view_set_document (HexView *self, HexDocument *document)
 	g_signal_connect_object (priv->document, "file-loaded", G_CALLBACK(gtk_widget_queue_draw), self, G_CONNECT_SWAPPED);
 	g_signal_connect_object (priv->document, "file-loaded", G_CALLBACK(gtk_widget_queue_allocate), self, G_CONNECT_SWAPPED);
 
-	g_debug ("%s: document set to: %p", __func__, priv->document);
+	g_debug ("%s: %s document set to: %p", __func__, G_OBJECT_TYPE_NAME (self), priv->document);
+	if (document == NULL)
+		g_debug ("\t(NULL originally passed as `document`)");
 
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_DOCUMENT]);
 }
