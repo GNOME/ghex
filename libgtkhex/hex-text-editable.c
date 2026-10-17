@@ -50,7 +50,7 @@ delete_selection_in_doc (HexTextEditable *self)
 	const gint64 start_offset = hex_selection_get_start_offset (selection);
 	const gsize len = hex_highlight_get_n_selected (highlight);
 
-	g_assert (start_offset != 0);
+	g_assert (start_offset >= 0);
 	g_assert (len != 0);
 
 	hex_document_delete_data (document, start_offset, len, TRUE);
@@ -214,13 +214,16 @@ backspace_action (HexTextEditable *self)
 	 * highlighted selection.
 	 */
 
-	if (n_selected == 1 && cursor_pos <= 0)
-		return;
+	if (n_selected == 1)
+	{
+		if (cursor_pos < 1)
+			return;
+
+		hex_selection_collapse (selection, MAX (cursor_pos - 1, 0));
+	}
 
 	delete_action (self);
 
-	if (n_selected == 1)
-		hex_selection_collapse (selection, cursor_pos - 1);
 }
 
 static void
