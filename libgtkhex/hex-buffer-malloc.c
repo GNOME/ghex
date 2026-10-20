@@ -271,7 +271,7 @@ hex_buffer_malloc_set_data (HexBuffer *buf, gint64 offset, size_t len,
 
 	if (offset > self->payload_size)
 	{
-		g_debug ("%s: offset greater than payload size; returning.", __func__);
+		g_critical ("%s: offset greater than payload size; returning.", __func__);
 		return FALSE;
 	}
 

@@ -787,7 +787,7 @@ static gboolean hex_buffer_mmap_set_data (HexBuffer *buf,
 
 	if (offset > self->payload)
 	{
-		g_debug ("%s: offset greater than payload size; returning.", __func__);
+		g_critical ("%s: offset greater than payload size; returning.", __func__);
 		return FALSE;
 	}
 
