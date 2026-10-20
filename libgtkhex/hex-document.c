@@ -1936,10 +1936,11 @@ hex_document_undo (HexDocument *doc)
 static void
 hex_document_real_undo (HexDocument *doc)
 {
-	GListModel *change_list;
-	size_t len;
-	char *rep_data;
-	char c_val;
+	GListModel *change_list = NULL;
+	size_t len = 0;
+	char *rep_data = NULL;
+	char c_val = 0;
+	gint64 offset_mod = 0;
 
 	g_assert (HEX_IS_DOCUMENT (doc));
 
@@ -1976,15 +1977,21 @@ hex_document_real_undo (HexDocument *doc)
 			break;
 
 		case HEX_CHANGE_STRING:
+
 			len = cd->end - cd->start + 1;
+			cd->start += offset_mod;
 			rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
-			hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
-			g_free (cd->v_string);
+			hex_buffer_set_data (doc->buffer, cd->start, cd->rep_len, len, cd->v_string);
+
+			offset_mod += cd->rep_len - len;
+
 			cd->end = cd->start + cd->rep_len - 1;
 			cd->rep_len = len;
+			g_free (cd->v_string);
 			cd->v_string = rep_data;
+
 			break;
-		}	/* switch */
+		}
 	}
 
 	hex_document_changed_multi (doc, change_list, FALSE);
@@ -2016,10 +2023,11 @@ hex_document_redo (HexDocument *doc)
 static void
 hex_document_real_redo (HexDocument *doc)
 {
-	GListModel *change_list;
-	size_t len;
-	char *rep_data;
-	char c_val;
+	GListModel *change_list = NULL;
+	size_t len = 0;
+	char *rep_data = NULL;
+	char c_val = 0;
+	gint64 offset_mod = 0;
 
 	g_assert (HEX_IS_DOCUMENT (doc));
 
@@ -2058,13 +2066,19 @@ hex_document_real_redo (HexDocument *doc)
 			break;
 
 		case HEX_CHANGE_STRING:
+
 			len = cd->end - cd->start + 1;
+			cd->start += offset_mod;
 			rep_data = hex_buffer_get_data (doc->buffer, cd->start, len);
-			hex_document_set_data (doc, cd->start, cd->rep_len, len, cd->v_string, FALSE);
-			g_free (cd->v_string);
+			hex_buffer_set_data (doc->buffer, cd->start, cd->rep_len, len, cd->v_string);
+
+			offset_mod += cd->rep_len - len;
+
 			cd->end = cd->start + cd->rep_len - 1;
 			cd->rep_len = len;
+			g_free (cd->v_string);
 			cd->v_string = rep_data;
+
 			break;
 		}
 	}
