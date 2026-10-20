@@ -374,8 +374,6 @@ ghex_search_bar_refresh_query (GHexSearchBar *self)
 			"what", g_steal_pointer (&contents),
 			"len", payload_size,
 			"flags", self->search_flags,
-			"found-msg", "Found",	// TEST
-			"not-found-msg", "Not found",	// TEST
 			NULL);
 
 	substantive_view = ghex_pane_get_hex (GHEX_PANE(self));
@@ -879,7 +877,7 @@ replace_all_thread_func (GTask *task, gpointer source_object, gpointer task_data
 	{
 		if (g_cancellable_is_cancelled (g_task_get_cancellable (task)))
 		{
-			goto out;
+			break;
 		}
 		else
 		{
@@ -887,14 +885,19 @@ replace_all_thread_func (GTask *task, gpointer source_object, gpointer task_data
 			const gboolean insert_mode = hex_view_get_insert_mode (view);
 			HexDocument *replace_entry_doc = hex_view_get_document (self->replace_entry);
 			g_autofree char *replace_entry_str = get_search_string (replace_entry_doc, &replace_entry_len);
-			size_t rep_len = search_info->found_len;	// TEST
-			size_t data_len = insert_mode ? replace_entry_len : rep_len;
+
+			/* Either way, we're replacing the length of the 'found' result. If
+			 * we're in insert mode, the length of the data can vary based upon
+			 * the length of the replacement string. Otherwise, it's the same
+			 * as 'found' (rep_len) since the buffer size is immutable.
+			 */
+			const size_t rep_len = search_info->found_len;
+			const size_t data_len = insert_mode ? replace_entry_len : rep_len;
 
 			hex_document_set_data_multi_add (doc, change_list, search_info->found_offset, data_len, rep_len, replace_entry_str);
 		}
 	}
 
-out:
 	g_task_return_pointer (task, g_steal_pointer (&change_list), g_object_unref);
 }
 
