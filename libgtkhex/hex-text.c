@@ -604,6 +604,8 @@ hex_text_class_init (HexTextClass *klass)
 	klass->dragged = NULL;		/* pure virtual function */
 	klass->right_click = NULL;	/* pure virtual function */
 	klass->render_line = hex_text_render_line;
+
+	gtk_widget_class_set_accessible_role (widget_class, GTK_ACCESSIBLE_ROLE_TEXT_BOX);
 }
 
 static void

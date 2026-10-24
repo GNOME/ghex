@@ -28,6 +28,7 @@ struct _HexTextHex
 	HexGroupType group_type;
 	gboolean lower_nibble;
 	gboolean fade_zeroes;
+	GtkExpression *cursor_pos_expr;
 };
 
 G_DEFINE_FINAL_TYPE (HexTextHex, hex_text_hex, HEX_TYPE_TEXT_EDITABLE)
@@ -448,9 +449,48 @@ hex_text_hex_render_highlights_for_line (HexTextEditable *hte, GtkSnapshot *snap
 }
 
 static void
+a11y_cursor_pos_changed_cb (gpointer data)
+{
+	HexTextHex *self = data;
+	GValue cursor_pos_gval = G_VALUE_INIT;
+	gint64 cursor_pos;
+	g_autofree char *desc = NULL;
+	g_autofree char *label = NULL;
+	gint64 cpl, line_offset;
+	HexDocument *doc;
+	HexBuffer *buf;
+	g_autofree char *raw_line = NULL;
+	g_autofree char *hex_line = NULL;
+
+	g_assert (HEX_IS_TEXT_HEX (self));
+
+	gtk_expression_evaluate (self->cursor_pos_expr, self, &cursor_pos_gval);
+	cursor_pos = g_value_get_int64 (&cursor_pos_gval);
+
+	desc = g_strdup_printf (_("Cursor position: %lX"), cursor_pos);
+	gtk_accessible_update_property (GTK_ACCESSIBLE(self), GTK_ACCESSIBLE_PROPERTY_DESCRIPTION, desc, -1);
+
+	doc = hex_view_get_document (HEX_VIEW(self));
+	buf = hex_document_get_buffer (doc);
+	cpl = hex_view_get_cpl (HEX_VIEW(self));
+	line_offset = (cursor_pos / cpl) * cpl;
+
+	raw_line = hex_text_hex_format_line (HEX_TEXT(self), 0 /* ignored */, line_offset, (size_t) MIN (cpl, hex_buffer_get_payload_size (buf) - line_offset));
+	pango_parse_markup (raw_line, -1, 0, NULL, &hex_line, NULL, NULL);
+	if (!hex_line)
+	{
+		g_critical ("%s: Failed to parse hex line for a11y text", __func__);
+		return;
+	}
+	gtk_accessible_update_property (GTK_ACCESSIBLE(self), GTK_ACCESSIBLE_PROPERTY_LABEL, hex_line, -1);
+}
+
+static void
 hex_text_hex_dispose (GObject *object)
 {
 	HexTextHex *self = HEX_TEXT_HEX(object);
+
+	g_clear_pointer (&self->cursor_pos_expr, gtk_expression_unref);
 
 	/* Chain up */
 	G_OBJECT_CLASS(hex_text_hex_parent_class)->dispose (object);
@@ -527,5 +567,15 @@ hex_text_hex_init (HexTextHex *self)
 
 		g_signal_connect (controller, "key-pressed", G_CALLBACK(key_press_cb), self);
 		gtk_widget_add_controller (GTK_WIDGET(self), controller);
+	}
+
+	/* a11y */
+	{
+		GtkExpression *expr;
+
+		expr = gtk_property_expression_new (HEX_TYPE_VIEW, NULL, "selection");
+		expr = gtk_property_expression_new (HEX_TYPE_SELECTION, expr, "cursor-pos");
+		self->cursor_pos_expr = g_steal_pointer (&expr);
+		gtk_expression_watch (self->cursor_pos_expr, self, a11y_cursor_pos_changed_cb, g_object_ref (self), g_object_unref);
 	}
 }

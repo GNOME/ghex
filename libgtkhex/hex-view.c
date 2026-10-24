@@ -9,6 +9,8 @@
 #include "hex-highlight-private.h"
 #include "util.h"
 
+#include <glib/gi18n.h>
+
 enum
 {
 	PROP_0,
