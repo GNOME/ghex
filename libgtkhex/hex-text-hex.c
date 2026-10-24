@@ -226,10 +226,10 @@ hex_text_hex_pressed (HexText *ht, GdkModifierType state, PangoLayout *layout, i
 
 	hex_text_hex_set_lower_nibble (self, lower_nibble);
 
-	hex_selection_set_cursor_pos (selection, cursor_pos);
-
 	if (! (state & GDK_SHIFT_MASK))
-		hex_selection_set_selection_anchor (selection, cursor_pos);
+		hex_selection_collapse (selection, cursor_pos);
+	else
+		hex_selection_set_cursor_pos (selection, cursor_pos);
 
 chain_up:
 	HEX_TEXT_CLASS(hex_text_hex_parent_class)->pressed (ht, state, layout, click_line, rel_x, rel_y);
