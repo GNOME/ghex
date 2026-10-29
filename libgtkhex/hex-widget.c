@@ -326,7 +326,7 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 			GtkRequisition child_req = {0};
 			GtkAllocation alloc = BASE_ALLOC;
 
-			g_debug ("%s: unexpected child: %s - %p", __func__, G_OBJECT_TYPE_NAME (child), (void *) child);
+			g_warning ("%s: unexpected child: %s - %p", __func__, G_OBJECT_TYPE_NAME (child), (void *) child);
 
 			/* just position the widget in the centre at its preferred
 			 * size. TODO: check v/halign and v/hexand
@@ -366,7 +366,7 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 		gtk_widget_size_allocate (ascii, &(GtkAllocation){.x=asc_alloc.x, .y=0, .width=asc_alloc.width, .height=full_width}, -1);
 		ascii_padding = asc_alloc.width - gtk_widget_get_width (ascii);
 
-		tmp_auto_cpl = gtk_widget_get_width (ascii) / char_width; // - 1;
+		tmp_auto_cpl = gtk_widget_get_width (ascii) / char_width;
 
 		if (hex)
 		{
@@ -378,7 +378,7 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 			gtk_widget_size_allocate (hex, &(GtkAllocation){.x=asc_alloc.x, .y=0, .width=max_width_left, .height=full_height}, -1);
 			hex_padding = max_width_left - gtk_widget_get_width (hex);
 
-			tot_cpl = gtk_widget_get_width (hex) / char_width;
+			tot_cpl = MAX (1, gtk_widget_get_width (hex) / char_width - 1);
 
 			/* Calculate how many hex vs. ascii characters can be stuffed
 			 * on one line.
@@ -423,17 +423,19 @@ hex_widget_size_allocate (GtkWidget *widget, int full_width, int full_height, in
 		}
 	}
 
-	// FIXME
 	if (hex && !ascii)
 	{
-		int tmp_cpl;
+		int hex_cpl;
 
 		hex_alloc.x = off_alloc.width;
 		hex_alloc.width = full_width - off_alloc.width;
 
-		/* FIXME: This is kind of lazy and will be optimized for the 'byte'
-		 * grouptype; rework if possible to adapt to group type. */
-		tmp_auto_cpl = (hex_alloc.width / char_width) / 3;
+		hex_cpl = hex_alloc.width / char_width;
+		while (hex_cpl % (self->group_type * 2 + 1) != 0)
+			--hex_cpl;
+		hex_cpl = MAX (hex_cpl, self->group_type * 2);
+
+		tmp_auto_cpl = util_ascii_cpl_from_hex_cpl (hex_cpl, self->group_type);
 	}
 
 	if (offsets)

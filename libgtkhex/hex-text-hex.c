@@ -239,7 +239,7 @@ static void
 hex_text_hex_set_group_type (HexTextHex *self, HexGroupType group_type)
 {
 	self->group_type = group_type;
-	gtk_widget_queue_draw (GTK_WIDGET(self));
+	gtk_widget_queue_resize (GTK_WIDGET(self));
 	g_object_notify_by_pspec (G_OBJECT(self), properties[PROP_GROUP_TYPE]);
 }
 

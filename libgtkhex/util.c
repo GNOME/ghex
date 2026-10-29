@@ -232,6 +232,12 @@ util_hex_cpl_from_ascii_cpl (int ascii_cpl, HexGroupType group_type)
 	return ascii_cpl * 2 + ascii_cpl / group_type;
 }
 
+int
+util_ascii_cpl_from_hex_cpl (int hex_cpl, HexGroupType group_type)
+{
+	return hex_cpl * group_type / (2 * group_type + 1);
+}
+
 /* Sanity check to make sure font string is valid */
 gboolean
 util_validate_font_str (const char *font)

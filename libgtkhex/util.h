@@ -30,4 +30,5 @@ char * util_gdk_rgba_to_hex_color (const GdkRGBA *color);
 gboolean file_title_transform_to (GBinding *binding, const GValue *from_value, GValue *to_value, gpointer data);
 char * util_pango_font_description_to_css (PangoFontDescription *desc, const char *selector);
 int util_hex_cpl_from_ascii_cpl (int ascii_cpl, HexGroupType group_type);
+int util_ascii_cpl_from_hex_cpl (int hex_cpl, HexGroupType group_type);
 gboolean util_validate_font_str (const char *font);
